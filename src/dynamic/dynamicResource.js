@@ -1,13 +1,17 @@
 import React from 'react';
-import { SimpleForm,FormInput, EditButton,TextInput,Edit,Create,DisabledInput,List, Datagrid, TextField } from 'react-admin';
-import DynamicForm, { RestInput } from './dynamic/DynamicForm';
+import { EditButton,TextInput,Edit,Create,List, TextField,DisabledInput } from 'react-admin';
+import DynamicForm from './DynamicForm';
+import DynamicDatagrid from './DynamicDatagrid';
+import Rest from './Rest';
+import Hidden from './Hidden';
 
 
 export const DynamicList = (props) => (
     <List {...props}>
         <DynamicDatagrid>
-            <TextField source="id" />
+            <Hidden source="id" />
             <TextField source="name" />
+            <Rest/>
             <EditButton />
         </DynamicDatagrid>
     </List>
@@ -23,9 +27,10 @@ export const DynEdit = (props) => (
 );
 
 export const DynamicEdit = (props) => (
-    <div><Edit title={<PetTitle />} {...props}>
+    <div><Edit title={<DynamicTitle />} {...props}>
         <DynamicForm>
-            <RestInput/>
+            <Hidden source="id" />
+            <Rest/>
         </DynamicForm>
     </Edit></div>
 );
@@ -34,7 +39,7 @@ export const DynamicCreate = (props) => (
     <Create {...props}>
         <DynamicForm mode='create'>
             <TextInput source="name" />
-            <RestInput/>
+            <Rest/>
         </DynamicForm>
     </Create>
 );

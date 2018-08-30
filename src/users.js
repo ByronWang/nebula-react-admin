@@ -1,11 +1,11 @@
 import React from 'react';
-import { EditButton,TextInput,Edit,Create,List,TextField } from 'react-admin';
-import DynamicForm, { RestInput } from './dynamic/DynamicForm';
-import Rest from './dynamic/Rest';
+import { SimpleForm,FormInput, EditButton,TextInput,Edit,Create,DisabledInput,List, Datagrid, TextField } from 'react-admin';
+import DynamicForm, { Rest } from './dynamic/DynamicForm';
 import DynamicDatagrid from './dynamic/DynamicDatagrid';
+import Rest from './dynamic/Rest';
 
 
-export const PetList = (props) => (
+export const UserList = (props) => (
     <List {...props}>
         <DynamicDatagrid>
             <TextField source="id" />
@@ -15,19 +15,19 @@ export const PetList = (props) => (
     </List>
 );
 
-const PetTitle = ({ record }) => {
-    return <span>Pet {record ? `"${record.name}"` : ''}</span>;
+const UserTitle = ({ record }) => {
+    return <span>User {record ? `"${record.name}"` : ''}</span>;
 };
 
-export const PetEdit = (props) => (
-    <div><Edit title={<PetTitle />} {...props}>
+export const UserEdit = (props) => (
+    <div><Edit title={<UserTitle />} {...props}>
         <DynamicForm>
             <Rest/>
         </DynamicForm>
     </Edit></div>
 );
 
-export const PetCreate = (props) => (
+export const UserCreate = (props) => (
     <Create {...props}>
         <DynamicForm mode='create'>
             <TextInput source="name" />

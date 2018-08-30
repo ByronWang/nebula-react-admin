@@ -1,5 +1,4 @@
 import {forEach} from 'lodash';
-import React from 'react';
 
 const cachedInputs = {}
 

@@ -1,11 +1,11 @@
-import React, { Children, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Datagrid,TextField} from 'react-admin/lib';
 
 import asyncViews from './asyncViews';
-import AsyncInputs from './AsyncInputs';
 import {extend} from 'lodash';
 import Rest from './Rest';
+import Hidden from './Hidden';
 
 export class DynamicDatagrid extends Component {
     _hasUnmounted = false;
@@ -18,7 +18,7 @@ export class DynamicDatagrid extends Component {
     constructor(props) {
       super(props);
       asyncViews(this.props.resource);
-      if("create"==props.mode){
+      if("create"===props.mode){
         this._exclude['id']='id';
       }
       if(this.props.exclude)this.props.exclude.split(",").map(source=>this._exclude[source]=source);
@@ -77,8 +77,10 @@ export class DynamicDatagrid extends Component {
             return (            
             <Datagrid {...rest}>
               {
-                React.Children.map(children, function(field){
-                  if(field.type !== Rest){
+                React.Children.map(children, function(field){  
+                if(field.type ===  Hidden){
+
+                }else if(field.type !== Rest){
                     return field;
                   }else{
                     restRendered = true;

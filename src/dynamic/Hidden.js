@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-class Rest extends Component {
+class Hidden extends Component {
     render() {
          return null;
     }
   }
-  Rest.propTypes = {
-    exclude: PropTypes.string,
+  Hidden.propTypes = {
+    source: PropTypes.string,
 };
-export default Rest;
+export default Hidden;
   

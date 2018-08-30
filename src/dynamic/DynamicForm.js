@@ -1,11 +1,12 @@
-import React, { Children, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SimpleForm,TextInput} from 'react-admin/lib';
+import { SimpleForm } from 'react-admin/lib';
 
 import asyncViews from './asyncViews';
 import AsyncInputs from './AsyncInputs';
 import {extend} from 'lodash';
 import Rest from './Rest';
+import Hidden from './Hidden';
 
 export class DynamicForm extends Component {
     _hasUnmounted = false;
@@ -18,7 +19,7 @@ export class DynamicForm extends Component {
     constructor(props) {
       super(props);
       asyncViews(this.props.resource);
-      if("create"==props.mode){
+      if("create"===props.mode){
         this._exclude['id']='id';
       }
       if(this.props.exclude)this.props.exclude.split(",").map(source=>this._exclude[source]=source);
@@ -87,7 +88,9 @@ export class DynamicForm extends Component {
             <SimpleForm {...rest}>
               {
                 React.Children.map(children, function(field){
-                  if(field.type !== Rest){
+                  if(field.type ===  Hidden){
+
+                  }else if(field.type !== Rest){
                     return field;
                   }else{
                     restRendered = true;
